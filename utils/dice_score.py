@@ -17,7 +17,9 @@ def dice_coeff(input: Tensor, target: Tensor, reduce_batch_first: bool = False, 
     return dice.mean()
 
 
-def multiclass_dice_coeff(input: Tensor, target: Tensor, reduce_batch_first: bool = False, epsilon: float = 1e-6):
+def multiclass_dice_coeff(
+    input: Tensor, target: Tensor, reduce_batch_first: bool = False, epsilon: float = 1e-6
+):
     # Average of Dice coefficient for all classes
     return dice_coeff(input.flatten(0, 1), target.flatten(0, 1), reduce_batch_first, epsilon)
 
