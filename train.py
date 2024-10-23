@@ -88,7 +88,7 @@ def train_model(
     # optimizer = optim.RMSprop(
     #     model.parameters(), lr=learning_rate, weight_decay=weight_decay, momentum=momentum, foreach=True
     # )
-    optimizer = optim.adam.Adam(
+    optimizer = optim.Adam(
         model.parameters(), lr=learning_rate, weight_decay=weight_decay, momentum=momentum
     )
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(
