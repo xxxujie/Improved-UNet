@@ -35,7 +35,7 @@ def get_args():
     parser.add_argument(
         "--model",
         "-m",
-        default="MODEL.pth",
+        default="./checkpoints/checkpoint_epoch5.pth",
         metavar="FILE",
         help="Specify the file in which the model is stored",
     )
@@ -68,7 +68,13 @@ def get_output_filenames(args):
     return args.output or list(map(_generate_name, args.input))
 
 
-def mask_to_image(mask: np.ndarray, mask_values):
+def mask_to_image(mask: np.ndarray, mask_values, color_map=None):
+    if color_map is None:
+        # generate random color map
+        color_map = {}
+        for i in range(len(mask_values)):
+            color_map[i] = np.random.randint(0, 255, size=3)
+
     if isinstance(mask_values[0], list):
         out = np.zeros((mask.shape[-2], mask.shape[-1], len(mask_values[0])), dtype=np.uint8)
     elif mask_values == [0, 1]:
