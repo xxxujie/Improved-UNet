@@ -88,9 +88,7 @@ def train_model(
     # optimizer = optim.RMSprop(
     #     model.parameters(), lr=learning_rate, weight_decay=weight_decay, momentum=momentum, foreach=True
     # )
-    optimizer = optim.Adam(
-        model.parameters(), lr=learning_rate, weight_decay=weight_decay, momentum=momentum
-    )
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(
         optimizer, "max", patience=5
     )  # goal: maximize Dice score
