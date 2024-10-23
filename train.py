@@ -85,8 +85,11 @@ def train_model(
     )
 
     # 4. Set up the optimizer, the loss, the learning rate scheduler and the loss scaling for AMP
-    optimizer = optim.RMSprop(
-        model.parameters(), lr=learning_rate, weight_decay=weight_decay, momentum=momentum, foreach=True
+    # optimizer = optim.RMSprop(
+    #     model.parameters(), lr=learning_rate, weight_decay=weight_decay, momentum=momentum, foreach=True
+    # )
+    optimizer = optim.adam.Adam(
+        model.parameters(), lr=learning_rate, weight_decay=weight_decay, momentum=momentum
     )
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(
         optimizer, "max", patience=5
