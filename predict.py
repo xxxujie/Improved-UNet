@@ -86,7 +86,7 @@ def mask_to_image(mask: np.ndarray, mask_values, color_map=None):
         mask = np.argmax(mask, axis=0)
 
     for i, v in enumerate(mask_values):
-        out[mask == i] = v
+        out[mask == i] = color_map[i]
 
     return Image.fromarray(out)
 
